@@ -16,7 +16,7 @@ class MusicListVC: UIViewController {
         super.viewDidLoad()
 
         
-        view.backgroundColor = UIColor.blue
+        
         
         
         
@@ -28,19 +28,30 @@ class MusicListVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    @IBAction func backBtnPressed(_ sender: UIButton) {
+   @IBAction func backBtnPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
         
+    }
+    
+    
+    @IBAction func load3rdScreenPressed(_ sender: Any) {
+        let songTitle = "Quit Playing Games With My Heart"
+        performSegue(withIdentifier: "PlaySongVC", sender: songTitle)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? PlaySongVC {
+            
+            if let song = sender as? String {
+            
+                destination.selectedSong = song
+            
+            }
+            
+            
+        }
+ 
+
     }
 
 }
